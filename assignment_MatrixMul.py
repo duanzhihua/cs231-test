@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-#阅读 python 和 numpy 教程和代码写一个矩阵的类，实现矩阵乘法，
-#只能使用 python 的类(class)和列表(list)
 import numpy as np
 
 class MyMatrix(object):
@@ -39,4 +37,3 @@ print (result_np)
 myMatrix=MyMatrix()
 result = myMatrix.matmul(a,b)
 print (result)
-       
