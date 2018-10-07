@@ -152,9 +152,4 @@ for param in params:
 import matplotlib.pyplot as plt
 #get_ipython().run_line_magic('matplotlib', 'inline')
 plt.plot(params, test_scores)
-plt.title("max_depth vs CV Error");
-
-
-# 惊了，深度为5的时候，错误率缩小到0.127
-
-# 这就是为什么，浮躁的竞赛圈，人人都在用XGBoost :)
+plt.title("max_depth vs CV Error"); 
