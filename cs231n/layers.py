@@ -14,9 +14,9 @@ def affine_forward(x, w, b):
     then transform it to an output vector of dimension M.
 
     Inputs:
-    - x: A numpy array containing input data, of shape (N, d_1, ..., d_k)
-    - w: A numpy array of weights, of shape (D, M)
-    - b: A numpy array of biases, of shape (M,)
+    - x: A numpy array containing input data, of shape (N, d_1, ..., d_k)  #(2,4,5,6)
+    - w: A numpy array of weights, of shape (D, M)  #(120,3) 
+    - b: A numpy array of biases, of shape (M,) #(3,)
 
     Returns a tuple of:
     - out: output, of shape (N, M)
@@ -27,7 +27,10 @@ def affine_forward(x, w, b):
     # TODO: Implement the affine forward pass. Store the result in out. You   #
     # will need to reshape the input into rows.                               #
     ###########################################################################
-    pass
+    D = w.shape[0]
+    x1 =x.reshape(-1,D) 
+    out = np.dot(x1,w) +b
+     
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
@@ -56,7 +59,13 @@ def affine_backward(dout, cache):
     ###########################################################################
     # TODO: Implement the affine backward pass.                               #
     ###########################################################################
-    pass
+    # z= wx +b ---->l   #▽Wl = ▽zl X^T   #▽bl = ▽zl * 1    #▽xl = ▽zl * w 
+     
+    dx =  np.dot (dout,w.T)      # (N,M)  (M,D)------> (N,D)
+    dx =  dx.reshape(x.shape)      # (N,D)----> (N, d1, ..., d_k)
+    dw = np.dot ( x.reshape(x.shape[0],-1).T ,dout   )   # (N,D)^T   (N,M) ---(D,M)
+    db = dout.sum(axis=0)  # dout(N,M) --->(M,1)
+
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################
